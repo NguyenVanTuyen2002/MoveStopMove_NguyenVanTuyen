@@ -11,4 +11,5 @@ public class CacheString
     public const string Anim_DanceWin = "DanceWin";
     public const string Anim_Dead = "Dead";
     public const string Anim_DanceCharSkin = "DanceCharSkin";
+    public const string Tag_Character = "Character";
 }

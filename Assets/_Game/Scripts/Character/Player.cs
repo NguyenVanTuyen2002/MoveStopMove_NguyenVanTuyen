@@ -8,25 +8,26 @@ public class Player : Character
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private Weapon weaponPrefabs;
-    [SerializeField] private Transform attackPoint;
 
     public VariableJoystick joystick;
-    //public Vector3 posRaycast;
-
 
     private Vector3 _movement;
 
+    private void Start()
+    {
+        StartCoroutine(CoAttack());
+    }
+
     private void Update()
     {
-        Vector3 posRaycast = attackPoint.position;
-
         Move();
         Rotate();
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             ChangeAnim(CacheString.Anim_Attack);
+            Attack();
         }
-        Debug.DrawRay(posRaycast, Vector3.forward * 5f, UnityEngine.Color.red);
+        FindTarget();
     }
 
     private void Move()
@@ -34,11 +35,13 @@ public class Player : Character
         _movement = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
         if (_movement.sqrMagnitude > 0.1f)
         {
+            isMoving = true;
             transform.Translate(_moveSpeed * Time.deltaTime * _movement, Space.World);
             ChangeAnim(CacheString.Anim_Run);
         }
         else if (_movement.sqrMagnitude < 0.1f)
         {
+            isMoving = false;
             ChangeAnim(CacheString.Anim_Idle);
         }
     }
@@ -54,6 +57,16 @@ public class Player : Character
         }
     }
 
-    
-    
+    protected override void FindTarget()
+    {
+        base.FindTarget();
+        foreach(var i in listAttack)
+        {
+            i.HideRendererTarget();
+            if(i == target)
+            {
+                i.ShowRendererTarget();
+            }
+        }
+    }
 }

@@ -13,7 +13,7 @@ public class Guner : MonoBehaviour
     private float time = 0;
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (time > rateFire)
         {
@@ -28,11 +28,11 @@ public class Guner : MonoBehaviour
         {
             Fire();
         }
-    }
+    }*/
 
     //de dung duoc pool thi object phai ke thua gameunit
 
-    public void Fire()
+    /*public void Fire()
     {
         for (int i = 0; i < bulletPoints.Length; i++)
         {
@@ -41,5 +41,5 @@ public class Guner : MonoBehaviour
             //cach 2 lay theo pool type voi dieu kien object do phat de trong folder Resources/Pool
             SimplePool.Spawn<Bullet>(PoolType.Bullet_2 , bulletPoints[i].position, bulletPoints[i].rotation).OnInit();
         }
-    }
+    }*/
 }
