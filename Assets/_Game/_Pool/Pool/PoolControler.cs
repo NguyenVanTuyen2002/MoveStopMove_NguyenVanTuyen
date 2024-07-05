@@ -148,6 +148,7 @@ public enum PoolType
     Bullet_2,
     Bullet_3,
     Bullet_4,
+    CandyBullet
 }
 
 

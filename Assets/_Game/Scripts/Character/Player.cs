@@ -7,7 +7,6 @@ public class Player : Character
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] private Weapon weaponPrefabs;
 
     public VariableJoystick joystick;
 
@@ -15,19 +14,19 @@ public class Player : Character
 
     private void Start()
     {
-        StartCoroutine(CoAttack());
+        /*Attack();*/
     }
 
     private void Update()
     {
         Move();
         Rotate();
+        FindTarget();
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             ChangeAnim(CacheString.Anim_Attack);
             Attack();
         }
-        FindTarget();
     }
 
     private void Move()

@@ -16,7 +16,7 @@ public class Bot : Character
     void Start()
     {
         currentIdleDuration = Random.Range(1f, 5f);
-        StartCoroutine(CoAttack());
+        /*StartCoroutine(CoAttack());*/
     }
 
     void Update()

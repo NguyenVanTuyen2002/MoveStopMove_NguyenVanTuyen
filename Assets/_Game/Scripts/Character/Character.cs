@@ -9,13 +9,14 @@ public class Character : GameUnit
     [SerializeField] public List<Character> listAttack = new List<Character>();
     [SerializeField] protected Renderer targetRenderer;
     [SerializeField] protected Character target;
+    [SerializeField] private Weapon currentWeapon;
 
     protected bool isMoving;
 
     public string currentAnimName;
     public Animator anim;
     public Transform attackPoint;
-    public Bullet bulletPrefab;
+    /*public Bullet bulletPrefab;*/
 
     public void ChangeAnim(string animName)
     {
@@ -29,14 +30,16 @@ public class Character : GameUnit
 
     public void Attack()
     {
-        if (target != null && bulletPrefab != null)
+        if (target != null && currentWeapon != null)
         {
-            Bullet bulletObject = SimplePool.Spawn<Bullet>(bulletPrefab, attackPoint.position, bulletPrefab.transform.rotation);
-            StartCoroutine(bulletObject.CoMoveBullet(bulletObject, target.transform.position));
+            Debug.Log("att");
+            currentWeapon.Fire(attackPoint.position, target.transform.position);
+            /*Bullet bulletObject = SimplePool.Spawn<Bullet>(bulletPrefab, attackPoint.position, bulletPrefab.transform.rotation);
+            StartCoroutine(bulletObject.CoMoveBullet(bulletObject, target.transform.position));*/
         }
     }
 
-    protected IEnumerator CoAttack()
+    /*protected IEnumerator CoAttack()
     {
         while (true)
         {
@@ -48,7 +51,7 @@ public class Character : GameUnit
             }
             yield return new WaitForSeconds(2f); // Tạm dừng 2 giây trước khi lặp lại
         }
-    }
+    }*/
 
     public void AddToAttackList(Character character)
     {
