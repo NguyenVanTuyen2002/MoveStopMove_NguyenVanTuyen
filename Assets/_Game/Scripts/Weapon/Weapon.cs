@@ -11,8 +11,6 @@ public class Weapon : MonoBehaviour
     public void Fire(Vector3 firePosition, Vector3 targetPosition)
     {
         Bullet bulletObject = SimplePool.Spawn<Bullet>(bulletPrefab, firePosition, Quaternion.identity);
-        bulletObject.gameObject.SetActive(true);
-        //StartCoroutine(bulletObject.CoMoveBullet(bulletObject, targetPosition));
         bulletObject.SetTargetPosition(firePosition, targetPosition);
         Debug.Log("Fire");
     }

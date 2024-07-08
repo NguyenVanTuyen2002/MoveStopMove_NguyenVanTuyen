@@ -16,7 +16,9 @@ public class Character : GameUnit
     public string currentAnimName;
     public Animator anim;
     public Transform attackPoint;
-    /*public Bullet bulletPrefab;*/
+
+    /*private Dictionary<Character, float> attackTimers = new Dictionary<Character, float>();
+    private float attackDelay = 1.5f;*/
 
     public void ChangeAnim(string animName)
     {
@@ -30,28 +32,21 @@ public class Character : GameUnit
 
     public void Attack()
     {
+        FindTarget();
         if (target != null && currentWeapon != null)
         {
             Debug.Log("att");
             currentWeapon.Fire(attackPoint.position, target.transform.position);
-            /*Bullet bulletObject = SimplePool.Spawn<Bullet>(bulletPrefab, attackPoint.position, bulletPrefab.transform.rotation);
-            StartCoroutine(bulletObject.CoMoveBullet(bulletObject, target.transform.position));*/
         }
     }
 
-    /*protected IEnumerator CoAttack()
+    public void AutoAttack()
     {
-        while (true)
+        if (listAttack.Count > 0)
         {
-            if (listAttack.Count > 0 && !isMoving)
-            {
-                Debug.Log(listAttack.Count);
-                Attack();
-                Debug.Log("danh");
-            }
-            yield return new WaitForSeconds(2f); // Tạm dừng 2 giây trước khi lặp lại
+
         }
-    }*/
+    }
 
     public void AddToAttackList(Character character)
     {

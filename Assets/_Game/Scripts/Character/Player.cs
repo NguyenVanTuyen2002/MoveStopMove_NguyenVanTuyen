@@ -21,7 +21,6 @@ public class Player : Character
     {
         Move();
         Rotate();
-        FindTarget();
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             ChangeAnim(CacheString.Anim_Attack);
