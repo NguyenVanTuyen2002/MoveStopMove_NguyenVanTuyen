@@ -1,27 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.UI.GridLayoutGroup;
+using UnityEngine.TextCore.Text;
 
 public class Bot : Character
 {
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] public NavMeshAgent agent;
 
     public float _moveRadius = 10f; // Bán kính di chuyển ngẫu nhiên
+    public float attackRange = 2f;
+    public float huntRange = 15f;
 
     private float timer;
     private float idleTimer = 0f;
     private float currentIdleDuration;
+    private IState<Bot> _currentState;
 
-    void Start()
+    private void Start()
     {
         currentIdleDuration = Random.Range(1f, 5f);
-        /*StartCoroutine(CoAttack());*/
+
+        ChangeState(new IdleState());
     }
 
-    void Update()
+    private void Update()
     {
-        Move();
+        if (_currentState != null)
+        {
+            _currentState.OnExecute(this);
+        }
+    }
+
+    public void ChangeState(IState<Bot> state)
+    {
+        if (_currentState != null)
+        {
+            _currentState.OnExit(this);
+        }
+
+        _currentState = state;
+
+        if (_currentState != null)
+        {
+            _currentState.OnEnter(this);
+        }
     }
 
     public void Move()
@@ -67,6 +93,33 @@ public class Bot : Character
         return navHit.position;
     }
 
-    
+    public void OnEnterAttackRange(Character target)
+    {
+        agent.ResetPath();
+        isMoving = false;
+        ChangeAnim(CacheString.Anim_Idle);
+        //ChangeState(new AttackState());
+    }
 
+    /*public void Hunt()
+    {
+        Character closestCharacter = LevelManager.Ins.GetClosestCharacter(this);
+        if (closestCharacter != null)
+        {
+            float distance = Vector3.Distance(transform.position, closestCharacter.transform.position);
+            if (distance > huntRange)
+            {
+                ChangeAnim(CacheString.Anim_Run);
+                agent.SetDestination(closestCharacter.transform.position);
+            }
+            else
+            {
+                Debug.Log("stop => attack");
+                ChangeAnim(CacheString.Anim_Idle);
+                //AddToAttackList(closestCharacter);
+                agent.ResetPath();
+                //ChangeState(new AttackState());
+            }
+        }
+    }*/
 }

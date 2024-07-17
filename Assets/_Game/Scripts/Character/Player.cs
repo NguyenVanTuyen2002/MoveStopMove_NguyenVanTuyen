@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -12,20 +12,20 @@ public class Player : Character
 
     private Vector3 _movement;
 
-    private void Start()
-    {
-        /*Attack();*/
-    }
-
     private void Update()
     {
         Move();
         Rotate();
-        if (Input.GetKeyDown(KeyCode.Space)) 
+
+        /*if (HaveCharacterInAttackRange())
         {
-            ChangeAnim(CacheString.Anim_Attack);
-            Attack();
+            // Nếu target không phải là null, tiếp tục tấn công
+            AttackCharacterInRange();
         }
+        if (target == null)
+        {
+            
+        }*/
     }
 
     private void Move()
@@ -40,7 +40,14 @@ public class Player : Character
         else if (_movement.sqrMagnitude < 0.1f)
         {
             isMoving = false;
-            ChangeAnim(CacheString.Anim_Idle);
+            if (HaveCharacterInAttackRange())
+            {
+                AttackCharacterInRange();
+            }
+            else
+            {
+                ChangeAnim(CacheString.Anim_Idle);
+            }
         }
     }
 
@@ -55,13 +62,16 @@ public class Player : Character
         }
     }
 
-    protected override void FindTarget()
+    public override void FindTarget()
     {
+        /*if (listAttack.Count <= 0) return;
+        target = listAttack[0];*/
         base.FindTarget();
-        foreach(var i in listAttack)
+
+        foreach (var i in listAttack)
         {
             i.HideRendererTarget();
-            if(i == target)
+            if (i == target)
             {
                 i.ShowRendererTarget();
             }

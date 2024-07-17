@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class AnimationEvent : MonoBehaviour
 {      
-    [SerializeField] private Weapon weapon;
+    //[SerializeField] private Weapon weapon;
+    [SerializeField] private MeshRenderer weaponRenderer;
 
     public void DeActiveWeapon()
     {
-        weapon.gameObject.SetActive(false);
+        weaponRenderer.enabled = false;
         Debug.Log("TurnOff Weapon");
     }
 
     public void SetActiveWeapon()
     {
-        weapon.gameObject.SetActive(true);
+        weaponRenderer.enabled = true;
         Debug.Log("TurnOn Weapon");
     }
 }

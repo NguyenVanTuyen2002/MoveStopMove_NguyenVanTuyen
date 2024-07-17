@@ -1,22 +1,31 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolState : IState<Character>
+public class PatrolState : IState<Bot>
 {
-    public void OnEnter(Character t)
+    float timer;
+    float randomTime;
+
+    public void OnEnter(Bot t)
+    {
+        
+    }
+
+    public void OnExecute(Bot t)
+    {
+        if (t.HaveCharacterInAttackRange())
+        {
+            t.ChangeState(new AttackState());
+        }
+        else
+        {
+            t.Move();
+        }
+    }
+
+    public void OnExit(Bot t)
     {
 
     }
-
-    public void OnExecute(Character t)
-    {
-
-    }
-
-    public void OnExit(Character t)
-    {
-
-    }
-
 }
