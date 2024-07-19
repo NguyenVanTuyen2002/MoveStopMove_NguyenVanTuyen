@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8cd27a693f4d34db9169da58cb7bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 0
+  poolType: 2
   listAttack: []
   target: {fileID: 0}
   targetRenderer: {fileID: 0}
@@ -408,6 +408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 164683196643023750, guid: 63d74704ddcdb584487290b1d7b57af5, type: 3}
   weaponRenderer: {fileID: 1421750231841267398}
+  owner: {fileID: 0}
 --- !u!4 &1421750231839497254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6627835393166762939, guid: 4225feb03a690ba46aa6a459c81794bb, type: 3}

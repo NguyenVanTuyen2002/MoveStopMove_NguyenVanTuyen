@@ -424,11 +424,11 @@ MonoBehaviour:
   Pool:
   - root: {fileID: 274897785}
     prefab: {fileID: 164683196643023750, guid: 63d74704ddcdb584487290b1d7b57af5, type: 3}
-    amount: 30
+    amount: 10
     collect: 1
   - root: {fileID: 1595822662}
     prefab: {fileID: 2276654832771360180, guid: 1054a69a63d834b45b3a852e8c13ca89, type: 3}
-    amount: 5
+    amount: 10
     collect: 1
   Particle: []
 --- !u!4 &648423491
@@ -765,7 +765,6 @@ MonoBehaviour:
   - {fileID: 1857459400}
   - {fileID: 1388462260}
   bots: []
-  spawnRadius: 1
 --- !u!1 &1595822661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4055121307455193345, guid: 3c9c78e9751c6aa4eafeda05817c3f88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9198128906771880468, guid: 3c9c78e9751c6aa4eafeda05817c3f88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.2
@@ -1266,5 +1269,5 @@ SceneRoots:
   - {fileID: 217810765}
   - {fileID: 1598351889}
   - {fileID: 8346011865007534233}
-  - {fileID: 648423491}
   - {fileID: 1830718290}
+  - {fileID: 648423491}

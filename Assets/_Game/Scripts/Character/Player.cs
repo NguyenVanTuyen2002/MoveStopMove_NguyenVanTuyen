@@ -12,6 +12,14 @@ public class Player : Character
 
     private Vector3 _movement;
 
+    private void Start()
+    {
+        if (currentWeapon != null)
+        {
+            currentWeapon.SetOwner(this); // Thiết lập chủ sở hữu cho vũ khí
+        }
+    }
+
     private void Update()
     {
         Move();
@@ -42,7 +50,14 @@ public class Player : Character
             isMoving = false;
             if (HaveCharacterInAttackRange())
             {
-                AttackCharacterInRange();
+                if (isDead == false)
+                {
+                    AttackCharacterInRange();
+                }
+                else
+                {
+                    CharacterOnDead(this);
+                }
             }
             else
             {
@@ -76,5 +91,19 @@ public class Player : Character
                 i.ShowRendererTarget();
             }
         }
+    }
+
+    public void CharacterOnDead(Character chart)
+    {
+        StartCoroutine(CoCharacterOnDead(chart));
+    }
+
+    public override IEnumerator CoCharacterOnDead(Character chart)
+    {
+        isDead = true;
+        ChangeAnim(CacheString.Anim_Dead);
+        yield return new WaitForSeconds(0.8f);
+        chart.gameObject.SetActive(false);
+        OnDeathAction?.Invoke();
     }
 }

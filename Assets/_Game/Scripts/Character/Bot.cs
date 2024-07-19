@@ -24,7 +24,14 @@ public class Bot : Character
     {
         currentIdleDuration = Random.Range(1f, 5f);
 
+        isDead = false;
+
         ChangeState(new IdleState());
+
+        if (currentWeapon != null)
+        {
+            currentWeapon.SetOwner(this); // Thiết lập chủ sở hữu cho vũ khí
+        }
     }
 
     private void Update()
@@ -48,6 +55,14 @@ public class Bot : Character
         {
             _currentState.OnEnter(this);
         }
+    }
+
+    public void OnInit()
+    {
+        this.isDead = false;
+        /*this.listAttack.Clear();
+        this.target = null;*/
+        //ChangeState(new IdleState());
     }
 
     public void Move()
@@ -99,6 +114,26 @@ public class Bot : Character
         isMoving = false;
         ChangeAnim(CacheString.Anim_Idle);
         //ChangeState(new AttackState());
+    }
+
+    public void DespawnBot()
+    {
+        SimplePool.Despawn(this);
+    }
+
+    public void CharacterOnDead(Character chart)
+    {
+        StartCoroutine(CoCharacterOnDead(chart));
+    }
+
+    public override IEnumerator CoCharacterOnDead(Character chart)
+    {
+        isDead = true;
+        ChangeAnim(CacheString.Anim_Dead);
+        yield return new WaitForSeconds(0.8f);
+        DespawnBot();
+        OnDeathAction?.Invoke();
+        LevelManager.Ins.currentLevel.RemoveBotWhenDead(this);
     }
 
     /*public void Hunt()

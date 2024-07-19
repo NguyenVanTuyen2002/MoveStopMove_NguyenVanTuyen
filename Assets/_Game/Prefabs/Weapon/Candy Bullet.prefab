@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9126686114875466813}
   - component: {fileID: 5036522801798739983}
   - component: {fileID: 164683196643023750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Candy Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,9 +67,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb988e55b45fd948933f5d6be967aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 2
+  poolType: 3
+  owner: {fileID: 0}
   rotationSpeed: 720
-  moveSpeed: 5
+  moveSpeed: 5.5
 --- !u!1001 &3644538159174030578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,6 +86,10 @@ PrefabInstance:
     - target: {fileID: 6627835393166344091, guid: 4225feb03a690ba46aa6a459c81794bb, type: 3}
       propertyPath: m_Name
       value: candy_Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627835393166344091, guid: 4225feb03a690ba46aa6a459c81794bb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6627835393166762939, guid: 4225feb03a690ba46aa6a459c81794bb, type: 3}
       propertyPath: m_LocalPosition.x

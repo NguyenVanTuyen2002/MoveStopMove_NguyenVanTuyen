@@ -7,13 +7,17 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Bullet : GameUnit
 {
+    [SerializeField] private Character owner;
+
     public float rotationSpeed = 360f;
     public float moveSpeed = 5f; // Bạn có thể điều chỉnh tốc độ di chuyển của đạn.
+
     private Vector3 targetPosition;
     private Vector3 startPosition;
     private float startTime;
     private float journeyLength;
     private bool isMoving = false;
+    private bool isDead;
 
     private void Update()
     {
@@ -33,10 +37,11 @@ public class Bullet : GameUnit
         }
     }
 
-    public void SetTargetPosition(Vector3 startPosition, Vector3 targetPosition)
+    public void SetTargetPosition(Vector3 startPosition, Vector3 targetPosition, Character owner)
     {
         this.startPosition = startPosition;
         this.targetPosition = targetPosition;
+        this.owner = owner;
         startTime = Time.time;
         journeyLength = Vector3.Distance(startPosition, targetPosition);
         isMoving = true;
@@ -50,5 +55,21 @@ public class Bullet : GameUnit
     public void OnDespawn()
     {
         SimplePool.Despawn(this);
+    }
+
+    public void CollisionWithCharacter(Collider other)
+    {
+        if (!other.CompareTag(CacheString.Tag_Character)) return;
+        Character character = CacheComponent.GetCharacter(other);
+        if (character != owner)
+        {
+            character.SetDead();
+            (character as Bot).ChangeState(new DieState());
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        CollisionWithCharacter(other);
     }
 }

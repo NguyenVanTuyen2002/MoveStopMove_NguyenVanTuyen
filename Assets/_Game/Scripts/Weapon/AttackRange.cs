@@ -7,7 +7,7 @@ public class AttackRange : MonoBehaviour
 {
     public Character owner;
 
-    private Dictionary<Character, Coroutine> attackCoroutines = new Dictionary<Character, Coroutine>();
+    //private Dictionary<Character, Coroutine> attackCoroutines = new Dictionary<Character, Coroutine>();
 
     public void CharacterGetInList(Collider other)
     {
@@ -16,6 +16,7 @@ public class AttackRange : MonoBehaviour
         if (characters != null && characters != owner)
         {
             owner.AddToAttackList(characters);
+            owner.AddEnemyDeadAction(characters);
             owner.FindTarget();
             // Notify bot that it entered the attack range
             Bot bot = characters as Bot;
@@ -41,6 +42,7 @@ public class AttackRange : MonoBehaviour
         {
             owner.RemoveFromAttackList(characters);
             characters.HideRendererTarget();
+            owner.RemoveEnemyDeadAction(characters);
             //characters.StopAttackCoroutine();
         }
     }
