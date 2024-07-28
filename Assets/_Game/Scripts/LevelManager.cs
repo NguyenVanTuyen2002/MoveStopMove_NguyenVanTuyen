@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelManager : Singleton<LevelManager>
 {
     public Level currentLevel;
+    public Player player;
+    public ShopSkinData ShopSkinData;
 
     /*public Character GetClosestCharacter(Character requester)
     {

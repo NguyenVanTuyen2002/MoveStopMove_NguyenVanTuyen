@@ -4,11 +4,18 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum GameState
+{
+    MainMenu = 0,
+    GamePlay = 1,
+    ShopSkin = 2,
+}
+
 public class GameManager : Singleton<GameManager>
 {
     //[SerializeField] UserData userData;
     //[SerializeField] CSVData csv;
-    //private static GameState gameState = GameState.MainMenu;
+    private static GameState gameState = GameState.MainMenu;
 
     // Start is called before the first frame update
     protected void Awake()
@@ -28,19 +35,20 @@ public class GameManager : Singleton<GameManager>
         //csv.OnInit();
         //userData?.OnInitData();
 
-        //ChangeState(GameState.MainMenu);
+        ChangeState(GameState.MainMenu);
 
         UIManager.Ins.OpenUI<MianMenu>();
+        Debug.Log("MianMenu");
     }
 
-    //public static void ChangeState(GameState state)
-    //{
-    //    gameState = state;
-    //}
+    public static void ChangeState(GameState state)
+    {
+        gameState = state;
+    }
 
-    //public static bool IsState(GameState state)
-    //{
-    //    return gameState == state;
-    //}
-  
+    public static bool IsState(GameState state)
+    {
+        return gameState == state;
+    }
+
 }

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ced2814ed0ceab448d54c2adfb8c878, type: 3}
+  m_Name: ShopDataConfig
+  m_EditorClassIdentifier: 
+  hairDatas:
+  - ID: 0
+    Name: Arrow
+    Description: 5 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: c961b1a8e010f244ca862f1db4a3a67e, type: 3}
+  - ID: 1
+    Name: Cowboy
+    Description: 5 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: c37f823080ba9ec4d9c544a27dd081a6, type: 3}
+  - ID: 2
+    Name: Headphone
+    Description: 5 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: 49973c7e9e10d58458c6119866953e72, type: 3}
+  - ID: 3
+    Name: Cap
+    Description: 5 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: fd1dab24adcd35d468b7082a11929562, type: 3}
+  - ID: 4
+    Name: Police
+    Description: 15 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: 727b0410fb1c5be4693943c562661e4d, type: 3}
+  - ID: 5
+    Name: Luffy
+    Description: 15 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: 28f8f7266fa712b449e2de68337e7916, type: 3}
+  - ID: 6
+    Name: Rabit
+    Description: 15 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: 877be0081adf04f46ae8d16dbeaec211, type: 3}
+  - ID: 7
+    Name: King
+    Description: 15 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: 5a40d4cacb069a44eb568cabc1498f08, type: 3}
+  pantDatas:
+  - ID: 0
+    Name: Pokemon
+    Description: 5 speed
+    Price: 100
+    Icon: {fileID: 21300000, guid: be16fce1a3d608040aed706e1dad91ab, type: 3}
+    Pant: {fileID: 2100000, guid: e5f0e8747328777438a34cd3ed30a299, type: 2}
+  - ID: 1
+    Name: Skud
+    Description: 5 range
+    Price: 100
+    Icon: {fileID: 21300000, guid: ca72a3b7741ddf74b8957a418ee2cc66, type: 3}
+    Pant: {fileID: 2100000, guid: a0a39c414e3c77444a216d004dac1776, type: 2}
+  shieldDatas:
+  - ID: 0
+    Name: Venom
+    Description: 5 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: f158452aa3e0e2843b52bb8fd1e30062, type: 3}
+    Shield: {fileID: 3851793922181497670, guid: d9d85026417c5f54c8332b80589b39bf, type: 3}
+  - ID: 1
+    Name: Caption
+    Description: 15 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: 318bdf7c372f34048a06afa4784a946a, type: 3}
+    Shield: {fileID: 8378989337122827551, guid: bad7c3913a221c3459b725641bcc9985, type: 3}
+  setDatas:
+  - ID: 0
+    Name: Thor
+    Description: 15 range
+    Price: 500
+    Icon: {fileID: 21300000, guid: e7b17c9fb71da8d42b017c693d401802, type: 3}

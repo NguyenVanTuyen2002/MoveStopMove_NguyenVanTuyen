@@ -19,7 +19,7 @@ public class IdleState : IState<Bot>
     public void OnExecute(Bot t)
     {
         timer += Time.deltaTime;
-
+        if (!GameManager.IsState(GameState.GamePlay)) return;
         if (timer >= randomTime || !t.HaveCharacterInAttackRange())
         {
             t.ChangeState(new PatrolState());

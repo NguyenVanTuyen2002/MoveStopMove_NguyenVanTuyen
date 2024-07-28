@@ -14,9 +14,9 @@ public class Player : Character
 
     private void Start()
     {
-        if (currentWeapon != null)
+        if (CurrentWeapon != null)
         {
-            currentWeapon.SetOwner(this); // Thiết lập chủ sở hữu cho vũ khí
+            CurrentWeapon.SetOwner(this); // Thiết lập chủ sở hữu cho vũ khí
         }
     }
 

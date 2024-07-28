@@ -10,7 +10,6 @@ public class Character : GameUnit
     [SerializeField] public List<Character> listAttack = new List<Character>();
     [SerializeField] public Character target;
     [SerializeField] protected Renderer targetRenderer;
-    [SerializeField] protected Weapon currentWeapon;
 
     protected bool isMoving;
     protected bool isDead; // Biến theo dõi trạng thái chết của nhân vật
@@ -18,6 +17,14 @@ public class Character : GameUnit
     public string currentAnimName;
     public Animator anim;
     public Transform attackPoint;
+
+    public Weapon CurrentWeapon;
+
+
+    /*[SerializeField] private HairHolder hairHolder;
+    public HairHolder HairHolder => hairHolder;*/
+    public HairSkinObj CurrentHair { get; set; }
+
 
     private Coroutine attackCoroutine;
     protected UnityAction OnDeathAction;
@@ -46,9 +53,9 @@ public class Character : GameUnit
     public void Attack()
     {
         //FindTarget();
-        if (target != null && currentWeapon != null)
+        if (target != null && CurrentWeapon != null)
         {
-            currentWeapon.Fire(attackPoint.position, target.transform.position);
+            CurrentWeapon.Fire(attackPoint.position, target.transform.position);
         }
     }
 
@@ -68,10 +75,10 @@ public class Character : GameUnit
         {
             ChangeAnim(CacheString.Anim_Attack);
             yield return new WaitForSeconds(0.4f);
-            currentWeapon.DeActiveWeapon();
+            CurrentWeapon.DeActiveWeapon();
             Attack();
             yield return new WaitForSeconds(0.8f);
-            currentWeapon.SetActiveWeapon();
+            CurrentWeapon.SetActiveWeapon();
             //ChangeAnim(CacheString.Anim_Idle);
         }
         attackCoroutine = null; // Reset coroutine để có thể chạy lại khi cần
